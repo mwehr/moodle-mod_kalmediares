@@ -26,6 +26,8 @@ require_once(dirname(dirname(dirname(__FILE__))) . '/config.php');
 
 defined('MOODLE_INTERNAL') || die();
 
+require_login();
+
 /**
  * Renderable course index summary.
  * @package    mod_kalmediares

@@ -30,6 +30,8 @@ require_once(dirname(dirname(dirname(__FILE__))) . '/mod/kalmediares/renderable.
 
 defined('MOODLE_INTERNAL') || die();
 
+require_login();
+
 /**
  * Renderer class of YU Kaltura media resource.
  * @package   mod_kalmediares
