@@ -32,8 +32,6 @@ defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->dirroot . '/course/moodleform_mod.php');
 
-require_login();
-
 /**
  * class of YU Kaltura Media resource setting form.
  * @package mod_kalmediares

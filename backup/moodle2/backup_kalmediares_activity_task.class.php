@@ -30,12 +30,6 @@ require_once(dirname(__FILE__) . '/backup_kalmediares_settingslib.php');
 
 defined('MOODLE_INTERNAL') || die();
 
-global $PAGE;
-
-$PAGE->set_url('/mod/kalmediares/backup/moodle2/backup_kalmediares_activity_task.class.php');
-
-require_login();
-
 /**
  * kalmediares backup task.
  * @package    mod_kalmediares
