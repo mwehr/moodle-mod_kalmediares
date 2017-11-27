@@ -37,3 +37,4 @@ global $PAGE;
 $PAGE->set_url('/mod/kalmediares/backup/moodle2/backup_kalmediares_settingslib.php');
 
 require_login();
+

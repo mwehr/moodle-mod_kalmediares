@@ -30,9 +30,9 @@ require_once(dirname(dirname(dirname(__FILE__))) . '/local/yukaltura/locallib.ph
 
 defined('MOODLE_INTERNAL') || die();
 
-require_login();
-
 require_once($CFG->dirroot . '/course/moodleform_mod.php');
+
+require_login();
 
 /**
  * class of YU Kaltura Media resource setting form.

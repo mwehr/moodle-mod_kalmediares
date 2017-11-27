@@ -24,6 +24,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+global $DB;
+
 $logs = array(
     array('module' => 'kalmediares',
           'action' => 'view',
