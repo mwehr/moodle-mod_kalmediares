@@ -68,5 +68,18 @@ function xmldb_kalmediares_upgrade($oldversion) {
         upgrade_mod_savepoint(true, 2017051202, 'kalmediares');
     }
 
+    if ($oldversion < 2018050700) {
+        $table = new xmldb_table('kalmediares');
+        $field = new xmldb_field('view_access_log');
+                if (!$dbman->field_exists($table, $field)) {
+             $field->set_attributes(XMLDB_TYPE_INTEGER, '1', null, XMLDB_NOTNULL, null, '0', 'internal');
+             $field->setDefault('0');
+             $dbman->add_field($table, $field);
+        }
+
+        // Plugin kalmediares savepoint reached.
+        upgrade_mod_savepoint(true, 2018050700, 'kalmediares');
+    }
+
     return true;
 }

@@ -148,6 +148,60 @@ class mod_kalmediares_renderer extends plugin_renderer_base {
         return $output;
     }
 
+    public function create_student_playsviews_markup($id) {
+        global $COURSE, $USER, $DB;
+
+        $output = '';
+        $student = false;
+
+        $coursecontext = context_course::instance($COURSE->id);
+        $roles = get_user_roles($coursecontext, $USER->id);
+        foreach ($roles as $role) {
+            if ($role->shortname == 'student') {
+                $student = true;
+            }
+        }
+
+        if ($student == true) {
+            $plays = 0;
+            $views = 0;
+
+            $sql = 'select count(*) as views from mdl_logstore_standard_log ';
+            $sql .= 'where component=\'mod_kalmediares\' and contextinstanceid = :mid and action = \'viewed\' and userid = :uid';
+            $result = $DB->get_record_sql($sql, array('mid' => $id, 'uid' => $USER->id));
+
+            if (!empty($result)) {
+                $attr = array('align' => 'center');
+                $output .= html_writer::start_tag('div', $attr);
+                $views = $result->views;
+                if ($views > 0) {
+                    $output .= get_string('your_views', 'kalmediares', $views);
+                } else {
+                    $output .= get_string('firstview', 'kalmediares');
+                }
+                $output .= html_writer::end_tag('div');
+            }
+
+            $sql = 'select count(*) as plays from mdl_logstore_standard_log ';
+            $sql .= 'where component=\'mod_kalmediares\' and contextinstanceid = :mid and action = \'played\' and userid = :uid';
+            $result = $DB->get_record_sql($sql, array('mid' => $id, 'uid' => $USER->id));
+
+            if (!empty($result)) {
+                $attr = array('align' => 'center');
+                $output .= html_writer::start_tag('div', $attr);
+                $plays = $result->plays;
+                if ($plays > 0) {
+                    $output .= get_string('your_plays', 'kalmediares', $plays);
+                } else {
+                    $output .= get_string('not_played_yet', 'kalmediares');
+                }
+                $output .= html_writer::end_tag('div');
+            }
+        }
+
+        return $output;
+    }
+
     /**
      * This function return HTML markup to display paging bar.
      * @param int $page - page number.

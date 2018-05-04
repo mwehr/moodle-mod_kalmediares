@@ -143,8 +143,11 @@ class mod_kalmediares_mod_form extends moodleform_mod {
             $mform->addElement('static', 'connection_fail', get_string('conn_failed_alt', 'local_yukaltura'));
         }
 
-         $mform->addElement('header', 'access', get_string('access_hdr', 'kalmediares'));
+         $mform->addElement('header', 'access_restriction', get_string('access_restriction_hdr', 'kalmediares'));
          $this->add_access_definition($mform);
+
+         $mform->addElement('header', 'access_log', get_string('view_access_log_hdr', 'kalmediares'));
+         $this->add_view_access_log_definition($mform);
 
         $this->standard_coursemodule_elements();
 
@@ -171,6 +174,18 @@ class mod_kalmediares_mod_form extends moodleform_mod {
 
         return $output;
 
+    }
+
+    /**
+     * This function add "Access Log" part to module form.
+     * @param object $mform - form object.
+     */
+    private function add_view_access_log_definition($mform) {
+        $accessgroup = array();
+        $options = array('0' => 'No', '1' => 'Yes');
+        $select = $mform->addElement('select', 'view_access_log', get_string('view_access_log', 'mod_kalmediares'), $options);
+        $select->setSelected('0');
+        $accessgroup[] =& $select;
     }
 
     /**
