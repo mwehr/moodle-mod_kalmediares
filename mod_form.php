@@ -143,10 +143,10 @@ class mod_kalmediares_mod_form extends moodleform_mod {
             $mform->addElement('static', 'connection_fail', get_string('conn_failed_alt', 'local_yukaltura'));
         }
 
-         $mform->addElement('header', 'access_restriction', get_string('access_restriction_hdr', 'kalmediares'));
+         $mform->addElement('header', 'access_control', get_string('access_control_hdr', 'kalmediares'));
          $this->add_access_definition($mform);
 
-         $mform->addElement('header', 'access_log', get_string('view_access_log_hdr', 'kalmediares'));
+         $mform->addElement('header', 'access_log', get_string('publish_access_log_hdr', 'kalmediares'));
          $this->add_view_access_log_definition($mform);
 
         $this->standard_coursemodule_elements();
@@ -183,8 +183,18 @@ class mod_kalmediares_mod_form extends moodleform_mod {
     private function add_view_access_log_definition($mform) {
         $accessgroup = array();
         $options = array('0' => 'No', '1' => 'Yes');
-        $select = $mform->addElement('select', 'view_access_log', get_string('view_access_log', 'mod_kalmediares'), $options);
+        $select = $mform->addElement('select', 'publish_access_log', get_string('publish_access_log', 'mod_kalmediares'), $options);
+        $mform->addHelpButton('publish_access_log', 'publish_access_log', 'mod_kalmediares');
+
         $select->setSelected('0');
+
+        $accessgroup[] =& $select;
+
+        $options = array('0' => '0', '4' => '4', '8' => '8', '12' => '12', '16' => '16', '20' => '20', '24' => '24');
+        $select = $mform->addElement('select', 'exclusion_time', get_string('exclusion_time', 'mod_kalmediares'), $options);
+        $mform->addHelpButton('exclusion_time', 'exclusion_time', 'mod_kalmediares');
+        $select->setSelected('0');
+
         $accessgroup[] =& $select;
     }
 

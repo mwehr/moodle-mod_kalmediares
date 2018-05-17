@@ -31,5 +31,5 @@ Version 1.1.5
 
 Version 1.1.6
 
-* added functions for course reset for lib.php. Actually, these functions do nothing.
+* added functions for course reset in lib.php. Actually, these functions do nothing.
 * fixed statements about "How to use" in README.md.
