@@ -3,6 +3,7 @@ Change log of YU Kaltura Media Resource
 
 Version 1.2.1
 
+* fixed some statements in renderer.php, according to changes of local plugin (local_yukaltura).
 * executed minimization to playtrigger.js, base on JSDoc warnings.
 
 Version 1.2.0
