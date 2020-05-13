@@ -4,7 +4,7 @@ sudo: true
 
 addons:
   firefox: "57.0.1"
-  postgresql: "11.7"
+  postgresql: "10.12"
   apt:
     packages:
       - openjdk-8-jdk
